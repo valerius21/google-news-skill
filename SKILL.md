@@ -1,44 +1,54 @@
 # Google News RSS
 
-Abruf aktueller Google News über RSS-Feeds für beliebige Suchbegriffe.
+Fetch current Google News via RSS feeds for any search query with configurable region localization.
+
+## Author
+
+Bruno (valerius21)
 
 ## Usage
 
 ```bash
-skill.sh <query> [count]
+skill.sh <query> [count] [region]
 ```
 
 ## Parameters
 
-- `query` (required): Suchbegriff für Google News
-- `count` (optional): Anzahl der Ergebnisse (Default: 5)
+- `query` (required): Search term for Google News
+- `count` (optional): Number of results (Default: 5)
+- `region` (optional): Country code for localization (Default: US)
+  - Examples: `US`, `DE`, `GB`, `FR`, `JP`, etc.
 
 ## Examples
 
 ```bash
-# Legal Tech Nachrichten
+# Legal Tech news (US region, default)
 skill.sh "legal tech"
 
-# KI Nachrichten mit 10 Ergebnissen
-skill.sh "künstliche intelligenz" 10
+# AI news with 10 results in Germany
+skill.sh "artificial intelligence" 10 DE
 
-# Spezifische Suche
-skill.sh "openclaw ai agent" 5
+# Specific search in UK
+skill.sh "openclaw ai agent" 5 GB
+
+# French tech news
+skill.sh "technologie" 8 FR
 ```
 
 ## RSS Feed URL
 
-Der Skill nutzt folgende URL-Struktur:
+The skill uses the following URL structure:
 ```
-https://news.google.com/rss/search?hl=de&gl=DE&ceid=DE%3Ade&q=${urlencoded_query}
+https://news.google.com/rss/search?hl=en&gl=${REGION}&ceid=${REGION}%3Aen&q=${urlencoded_query}
 ```
 
 ## Use Cases
 
-- **Blogwatcher:** Füge News-Feeds zu deinem blogwatcher hinzu
-- **Tägliche Updates:** Erhalte aktuelle Nachrichten zu spezifischen Themen
-- **Research:** Schneller Überblick zu aktuellen Entwicklungen
+- **Blogwatcher:** Add news feeds to your blogwatcher for continuous monitoring
+- **Daily Updates:** Get current news on specific topics
+- **Research:** Quick overview of latest developments
+- **Multi-region monitoring:** Compare news coverage across different countries
 
 ## Output
 
-Die Skill gibt eine nummerierte Liste der neuesten Artikel-Titel aus und zeigt die verwendete RSS-URL für weitere Verwendung.
+The skill outputs a numbered list of the latest article titles and displays the RSS URL for further use in blogwatcher or other RSS readers.
