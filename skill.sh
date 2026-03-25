@@ -1,6 +1,6 @@
 #!/bin/bash
 # Google News RSS Feed Skill
-# Author: Bruno (valerius21)
+# Author: Valerius Mattfeld (valerius21)
 # Usage: skill.sh <query> [count] [region]
 # Example: skill.sh "legal tech" 10 US
 

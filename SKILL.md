@@ -4,7 +4,7 @@ Fetch current Google News via RSS feeds for any search query with configurable r
 
 ## Author
 
-Bruno (valerius21)
+Valerius Mattfeld (valerius21)
 
 ## Usage
 
