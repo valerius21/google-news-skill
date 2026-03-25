@@ -1,27 +1,19 @@
 # Google News RSS Skill
 
-An OpenClaw skill for fetching current Google News via RSS feeds with configurable search queries and region localization.
+A skill for fetching current Google News via RSS feeds with configurable search queries and region localization.
 
 ## Features
 
 - Flexible search with full URL encoding support
 - Region support for localized news (US, DE, GB, FR, etc.)
 - Customizable number of results
-- Fast and reliable Python3 implementation
+- Zero-dependency Node.js implementation
 - Blogwatcher ready with RSS URL output
 
 ## Installation
 
-### Clone the repository
-
 ```bash
-git clone https://github.com/valerius21/google-news-skill.git ~/.openclaw/skills/google-news
-```
-
-### Or copy from your OpenClaw skills directory
-
-```bash
-cp -r ~/.openclaw/skills/google-news ~/.openclaw/skills/
+npx skills add valerius21/google-news-skill
 ```
 
 ## Usage
@@ -72,47 +64,13 @@ https://news.google.com/rss/search?hl=en&gl=US&ceid=US%3Aen&q=legal+tech
 Tip: Add this URL to your blogwatcher: https://news.google.com/rss/search?hl=en&gl=US&ceid=US%3Aen&q=legal+tech
 ```
 
-## Use Cases
-
-### 1. Blogwatcher Integration
-
-Add the RSS URL to your blogwatcher for continuous monitoring:
-
-```bash
-echo "https://news.google.com/rss/search?hl=en&gl=US&ceid=US%3Aen&q=legal+tech | Legal Tech" >> ~/.openclaw/skills/blog-watcher/feeds.txt
-```
-
-### 2. Daily News Updates
-
-Create a cron job for daily news digests:
-
-```bash
-# Add to crontab
-0 8 * * * cd ~/.openclaw/skills/google-news && ./skill.sh "your topic" 10 US >> ~/news-digest.txt
-```
-
-### 3. Multi-Region Monitoring
-
-Compare news coverage across different countries:
-
-```bash
-for region in US DE GB FR; do
-  echo "=== $region ==="
-  ./skill.sh "artificial intelligence" 3 $region
-  echo
-done
-```
-
 ## Technical Details
 
-### Implementation
-
-- Language: Python 3.7+
-- Dependencies: None (uses only standard library)
-- URL Encoding: urllib.parse.quote() for robust encoding
-- XML Parsing: xml.etree.ElementTree for RSS parsing
-- HTTP Client: urllib.request with proper User-Agent headers
-- Timeout: 10 seconds per request
+- Language: Node.js (no external dependencies)
+- URL Encoding: `encodeURIComponent()` for robust encoding
+- XML Parsing: Regex-based RSS item extraction
+- HTTP Client: `https` module with proper User-Agent headers
+- Timeout: handled by Node.js defaults
 
 ### RSS Feed URL Structure
 
@@ -126,15 +84,6 @@ https://news.google.com/rss/search?hl=en&gl={REGION}&ceid={REGION}%3Aen&q={ENCOD
 | `gl` | Geographic location (US, DE, GB, etc.) |
 | `ceid` | Country and language ID (REGION:en) |
 | `q` | URL-encoded search query |
-
-## Contributing
-
-Issues, pull requests, and suggestions are welcome. Feel free to:
-
-- Report bugs
-- Suggest new features
-- Improve documentation
-- Add tests
 
 ## License
 

@@ -1,3 +1,8 @@
+---
+name: google-news-rss
+description: "Fetch current Google News via RSS feeds for any search query with configurable region localization. Use when the user asks for news headlines, Google News, RSS feeds, or wants to monitor news on a topic."
+---
+
 # Google News RSS
 
 Fetch current Google News via RSS feeds for any search query with configurable region localization.
@@ -58,7 +63,7 @@ The skill outputs a numbered list of the latest article titles and displays the 
 
 ## Implementation
 
-Written in Python 3 with:
-- `urllib.parse.quote()` for robust URL encoding
-- `xml.etree.ElementTree` for XML parsing
-- `urllib.request` for HTTP requests with proper headers
+Written in JavaScript (Node.js) with no external dependencies:
+- `encodeURIComponent()` for robust URL encoding
+- Regex-based XML parsing for RSS items
+- `https` module for HTTP requests with proper headers
