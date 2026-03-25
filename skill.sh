@@ -21,8 +21,8 @@ if [ -z "$QUERY" ]; then
     exit 1
 fi
 
-# URL-encode the query
-ENCODED_QUERY=$(echo "$QUERY" | sed 's/ /+/g')
+# URL-encode the query (robust encoding with jq)
+ENCODED_QUERY=$(printf '%s' "$QUERY" | jq -sRr @uri)
 
 # Fetch the RSS feed with configurable region
 RSS_URL="https://news.google.com/rss/search?hl=en&gl=${REGION}&ceid=${REGION}%3Aen&q=${ENCODED_QUERY}"
