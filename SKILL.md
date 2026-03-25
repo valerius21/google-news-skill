@@ -28,6 +28,9 @@ skill.sh "legal tech"
 # AI news with 10 results in Germany
 skill.sh "artificial intelligence" 10 DE
 
+# Special characters are properly encoded
+skill.sh "legal tech & AI" 5 US
+
 # Specific search in UK
 skill.sh "openclaw ai agent" 5 GB
 
@@ -52,3 +55,10 @@ https://news.google.com/rss/search?hl=en&gl=${REGION}&ceid=${REGION}%3Aen&q=${ur
 ## Output
 
 The skill outputs a numbered list of the latest article titles and displays the RSS URL for further use in blogwatcher or other RSS readers.
+
+## Implementation
+
+Written in Python 3 with:
+- `urllib.parse.quote()` for robust URL encoding
+- `xml.etree.ElementTree` for XML parsing
+- `urllib.request` for HTTP requests with proper headers
